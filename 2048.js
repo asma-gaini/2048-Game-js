@@ -12,17 +12,22 @@ for (let i = 0; i < numberOfPlayhouses; i++) {
 window.onload = createGame();
 
 function createGame() {
-  layout();
   initialArray();
   console.log(arrayGame);
+  layout();
 }
 
 function layout() {
   const getLayout = document.querySelector("#layout");
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      
-    }
+  const createGrid = document.createElement("div");
+  createGrid.setAttribute("class", "grid-container");
+  getLayout.appendChild(createGrid);
+
+  for (let i = 0; i < size * size; i++) {
+    const createGridSquare = document.createElement("div");
+    createGridSquare.setAttribute("class", "grid-item");
+    createGridSquare.innerHTML = arrayGame[i];
+    createGrid.appendChild(createGridSquare);
   }
 }
 
@@ -56,7 +61,7 @@ function setNumberInArray() {
   }
 }
 function initialArray() {
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 5; i++) {
     setNumberInArray();
   }
 }
