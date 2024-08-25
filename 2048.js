@@ -65,3 +65,22 @@ function initialArray() {
     setNumberInArray();
   }
 }
+
+document.addEventListener("keydown", (e) => {
+  //down key
+  if (e.which === 40) {
+    console.log("downArrowKey was pressed");
+  }
+
+  //upkey
+  else if (e.which === 38) {
+    console.log("upArrowKey was pressed");
+  }
+
+  //Enter key
+  else if (e.which === 37) {
+    console.log("leftArrowKey was pressed");
+  } else if (e.which === 39) {
+    console.log("rightArrowKey was pressed");
+  }
+});
