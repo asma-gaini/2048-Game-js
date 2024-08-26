@@ -32,8 +32,9 @@ function layout() {
 }
 
 function randomNumber() {
-  const rand = Math.floor(Math.random() * numberOfPlayhouses);
-  randomIndex = rand;
+  const rand = Math.floor(Math.random() * tempArray.length);
+  const randomTempValue = tempArray[rand];
+  randomIndex = randomTempValue;
 }
 
 function changeRandomToNumber() {
@@ -49,16 +50,10 @@ function setNumberInArray() {
   changeRandomToNumber();
 
   const index = tempArray.indexOf(randomIndex);
-  const includeIndex = tempArray.includes(index);
-
-  if (includeIndex == false) {
-    const rand = Math.floor(Math.random() * numberOfPlayhouses);
-    randomIndex = rand;
-    setNumberInArray();
-  } else {
-    const tempArrayWithoutElement = tempArray.splice(index, 1);
-    arrayGame[randomIndex] = number;
-  }
+  console.log(randomIndex);
+  const tempArrayWithoutElement = tempArray.splice(index, 1);
+  console.log(tempArray);
+  arrayGame[randomIndex] = number;
 }
 function initialArray() {
   for (let i = 0; i < 5; i++) {
@@ -67,20 +62,19 @@ function initialArray() {
 }
 
 document.addEventListener("keydown", (e) => {
-  //down key
   if (e.which === 40) {
     console.log("downArrowKey was pressed");
   }
 
-  //upkey
   else if (e.which === 38) {
     console.log("upArrowKey was pressed");
   }
 
-  //Enter key
   else if (e.which === 37) {
     console.log("leftArrowKey was pressed");
-  } else if (e.which === 39) {
+  } 
+  
+  else if (e.which === 39) {
     console.log("rightArrowKey was pressed");
   }
 });
