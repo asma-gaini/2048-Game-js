@@ -70,6 +70,7 @@ document.addEventListener("keydown", (e) => {
     console.log("upArrowKey was pressed");
   } else if (e.which === 37) {
     console.log("leftArrowKey was pressed");
+    moveLeft();
   } else if (e.which === 39) {
     console.log("rightArrowKey was pressed");
     moveRight();
@@ -108,6 +109,55 @@ function moveRight() {
         while (arrayGame[i + 1] == 0 && i % size != 4) {
           arrayGame[i + 1] = arrayGame[i];
           arrayGame[i] = 0;
+          i++;
+        }
+      }
+    }
+  }
+  layout();
+}
+
+function moveLeft() {
+  for (let i = 0; i < numberOfPlayhouses; i++) {
+    //enteghal 0 ha
+    if (i != numberOfPlayhouses - 1 && i % size != 4) {
+      if (arrayGame[i] == 0 && arrayGame[i + 1] != 0) {
+        while (arrayGame[i + 1] != 0 && i % size != 4) {
+          arrayGame[i] = arrayGame[i + 1];
+          arrayGame[i + 1] = 0;
+          while (arrayGame[i - 1] == 0 && i % size != 0) {
+            arrayGame[i - 1] = arrayGame[i];
+            arrayGame[i] = 0;
+            i--;
+          }
+          i++;
+        }
+      }
+    }
+  }
+  for (let i = 0; i < numberOfPlayhouses; i++) {
+    if (i % size != 4) {
+      //faghat ag 2 ta adad moshabeh kenar ham bashan
+      if (arrayGame[i] == arrayGame[i + 1]) {
+        console.log(arrayGame[i - 1]);
+        const arrayGameNext = arrayGame[i];
+        arrayGame[i] = arrayGameNext * 2;
+        arrayGame[i + 1] = 0;
+      }
+    }
+  }
+  for (let i = 0; i < numberOfPlayhouses; i++) {
+    //enteghal 0 ha
+    if (i != numberOfPlayhouses - 1 && i % size != 4) {
+      if (arrayGame[i] == 0 && arrayGame[i + 1] != 0) {
+        while (arrayGame[i + 1] != 0 && i % size != 4) {
+          arrayGame[i] = arrayGame[i + 1];
+          arrayGame[i + 1] = 0;
+          while (arrayGame[i - 1] == 0 && i % size != 0) {
+            arrayGame[i - 1] = arrayGame[i];
+            arrayGame[i] = 0;
+            i--;
+          }
           i++;
         }
       }
