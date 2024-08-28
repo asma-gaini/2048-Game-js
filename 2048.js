@@ -68,6 +68,7 @@ document.addEventListener("keydown", (e) => {
     console.log("downArrowKey was pressed");
   } else if (e.which === 38) {
     console.log("upArrowKey was pressed");
+    moveUp();
   } else if (e.which === 37) {
     console.log("leftArrowKey was pressed");
     moveLeft();
@@ -116,7 +117,6 @@ function moveRight() {
   }
   layout();
 }
-
 function moveLeft() {
   for (let i = 0; i < numberOfPlayhouses; i++) {
     //enteghal 0 ha
@@ -162,6 +162,27 @@ function moveLeft() {
         }
       }
     }
+  }
+  layout();
+}
+
+function moveUp() {
+  var tempnum = 0;
+  for (let i = 0; i < size; ) {
+    //enteghal 0 ha
+
+    while (i < numberOfPlayhouses - size) {
+      if (arrayGame[i] == 0 && arrayGame[i + size] != 0) {
+        arrayGame[i] = arrayGame[i + 5];
+        arrayGame[i + 5] = 0;
+        i += 5;
+      } else {
+        i += 5;
+        continue;
+      }
+    }
+    tempnum++;
+    i = tempnum;
   }
   layout();
 }
