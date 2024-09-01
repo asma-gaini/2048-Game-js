@@ -196,13 +196,12 @@ function moveUp() {
   for (let i = 0; i < size; i++) {
     var temp = i;
     while (temp < numberOfPlayhouses - size) {
-      if (arrayGame[temp] == arrayGame[temp + 5] && arrayGame[temp] != 0) {
+      if (arrayGame[temp] == arrayGame[temp + size] && arrayGame[temp] != 0) {
         arrayGame[temp] = arrayGame[temp] * 2;
-        arrayGame[temp + 5] = 0;
-        // console.log("yes");
-        temp += 5;
+        arrayGame[temp + size] = 0;
+        temp += size;
       } else {
-        temp += 5;
+        temp += size;
         continue;
       }
     }
@@ -212,20 +211,20 @@ function moveUp() {
     //enteghal 0 ha
     while (i < numberOfPlayhouses - size) {
       if (arrayGame[i] == 0 && arrayGame[i + size] != 0) {
-        arrayGame[i] = arrayGame[i + 5];
-        arrayGame[i + 5] = 0;
+        arrayGame[i] = arrayGame[i + size];
+        arrayGame[i + size] = 0;
         if (arrayGame[i] != 0) {
-          for (let j = i; j >= 0; j -= 5) {
-            if (arrayGame[i - 5] == 0) {
+          for (let j = i; j >= 0; j -= size) {
+            if (arrayGame[i - size] == 0) {
               t = i;
-              arrayGame[t - 5] = arrayGame[t];
+              arrayGame[t - size] = arrayGame[t];
               arrayGame[t] = 0;
             }
           }
         }
-        i += 5;
+        i += size;
       } else {
-        i += 5;
+        i += size;
         continue;
       }
     }
