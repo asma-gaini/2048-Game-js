@@ -66,6 +66,7 @@ function initialArray() {
 document.addEventListener("keydown", (e) => {
   if (e.which === 40) {
     console.log("downArrowKey was pressed");
+    moveDown();
   } else if (e.which === 38) {
     console.log("upArrowKey was pressed");
     moveUp();
@@ -172,20 +173,20 @@ function moveUp() {
     //enteghal 0 ha
     while (i < numberOfPlayhouses - size) {
       if (arrayGame[i] == 0 && arrayGame[i + size] != 0) {
-        arrayGame[i] = arrayGame[i + 5];
-        arrayGame[i + 5] = 0;
+        arrayGame[i] = arrayGame[i + size];
+        arrayGame[i + size] = 0;
         if (arrayGame[i] != 0) {
-          for (let j = i; j >= 0; j -= 5) {
-            if (arrayGame[i - 5] == 0) {
+          for (let j = i; j >= 0; j -= size) {
+            if (arrayGame[i - size] == 0) {
               var t = i;
-              arrayGame[t - 5] = arrayGame[t];
+              arrayGame[t - size] = arrayGame[t];
               arrayGame[t] = 0;
             }
           }
         }
-        i += 5;
+        i += size;
       } else {
-        i += 5;
+        i += size;
         continue;
       }
     }
@@ -229,6 +230,74 @@ function moveUp() {
       }
     }
     tempnum++;
+    i = tempnum;
+  }
+
+  layout();
+}
+
+function moveDown() {
+  var tempnum = numberOfPlayhouses - 1;
+  for (let i = numberOfPlayhouses - 1; i >= numberOfPlayhouses - size; ) {
+    //enteghal 0 ha
+    while (i >= size) {
+      if (arrayGame[i] == 0 && arrayGame[i - size] != 0) {
+        arrayGame[i] = arrayGame[i - size];
+        arrayGame[i - size] = 0;
+        if (arrayGame[i + size] == 0) {
+          for (let j = i; j <= numberOfPlayhouses - size; j += size) {
+            if (arrayGame[i + size] == 0) {
+              var t = i;
+              arrayGame[t + size] = arrayGame[t];
+              arrayGame[t] = 0;
+            }
+          }
+        }
+        i -= size;
+      } else {
+        i -= size;
+        continue;
+      }
+    }
+    tempnum--;
+    i = tempnum;
+  }
+  for (let i = numberOfPlayhouses - 1; i >= numberOfPlayhouses - size; i--) {
+    var temp = i;
+    while (temp >= size) {
+      if (arrayGame[temp] == arrayGame[temp - size] && arrayGame[temp] != 0) {
+        arrayGame[temp] = arrayGame[temp] * 2;
+        arrayGame[temp - size] = 0;
+        temp -= size;
+      } else {
+        temp -= size;
+        continue;
+      }
+    }
+  }
+  tempnum = numberOfPlayhouses - 1;
+  for (let i = numberOfPlayhouses - 1; i >= numberOfPlayhouses - size; ) {
+    //enteghal 0 ha
+    while (i >= size) {
+      if (arrayGame[i] == 0 && arrayGame[i - size] != 0) {
+        arrayGame[i] = arrayGame[i - size];
+        arrayGame[i - size] = 0;
+        if (arrayGame[i + size] == 0) {
+          for (let j = i; j <= numberOfPlayhouses - size; j += size) {
+            if (arrayGame[i + size] == 0) {
+              var t = i;
+              arrayGame[t + size] = arrayGame[t];
+              arrayGame[t] = 0;
+            }
+          }
+        }
+        i -= size;
+      } else {
+        i -= size;
+        continue;
+      }
+    }
+    tempnum--;
     i = tempnum;
   }
 
