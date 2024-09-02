@@ -47,6 +47,11 @@ function updateArrayGame() {
   for (let i = 0; i < selectArray.length; i++) {
     selectArray[i].innerHTML = arrayGame[i];
   }
+  // for (let j = 0; j < selectArray.length; j++) {
+  //   if (selectArray[j].innerHTML == 0) {
+  //     selectArray[j].innerHTML = "";
+  //   }
+  // }
 }
 
 function randomNumber() {
