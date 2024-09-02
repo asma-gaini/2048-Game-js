@@ -18,7 +18,7 @@ function createGame() {
   layout();
 }
 
-function updateArray() {
+function updateTempArray() {
   tempArray = [];
   for (let j = 0; j < arrayGame.length; j++) {
     if (arrayGame[j] == 0) {
@@ -40,6 +40,14 @@ function layout() {
     createGridSquare.setAttribute("class", "grid-item");
     createGridSquare.innerHTML = arrayGame[i];
     createGrid.appendChild(createGridSquare);
+  }
+}
+
+function updateArrayGame() {
+  var selectArray = document.querySelectorAll(".grid-item");
+  console.log(selectArray);
+  for (let i = 0; i < selectArray.length; i++) {
+    selectArray[i].innerHTML = arrayGame[i];
   }
 }
 
@@ -126,9 +134,9 @@ function moveRight() {
       }
     }
   }
-  updateArray();
+  updateTempArray();
   setNumberInArray();
-  layout();
+  updateArrayGame();
 }
 function moveLeft() {
   for (let i = 0; i < numberOfPlayhouses; i++) {
@@ -176,9 +184,9 @@ function moveLeft() {
       }
     }
   }
-  updateArray();
+  updateTempArray();
   setNumberInArray();
-  layout();
+  updateArrayGame();
 }
 
 function moveUp() {
@@ -245,9 +253,9 @@ function moveUp() {
     tempnum++;
     i = tempnum;
   }
-  updateArray();
+  updateTempArray();
   setNumberInArray();
-  layout();
+  updateArrayGame();
 }
 
 function moveDown() {
@@ -314,7 +322,7 @@ function moveDown() {
     tempnum--;
     i = tempnum;
   }
-  updateArray();
+  updateTempArray();
   setNumberInArray();
-  layout();
+  updateArrayGame();
 }
