@@ -3,20 +3,30 @@ const numberOfPlayhouses = size * size;
 var number = 0;
 var randomIndex = 0;
 let arrayGame = [
-  0, 2, 0, 0, 4, 2, 2, 0, 4, 0, 2, 0, 4, 4, 2, 0, 2, 4, 0, 0, 0, 0, 2, 2, 2,
+  // 0, 2, 0, 0, 4, 2, 2, 0, 4, 0, 2, 0, 4, 4, 2, 0, 2, 4, 0, 0, 0, 0, 2, 2, 2,
 ];
-// let tempArray = [];
-// for (let i = 0; i < numberOfPlayhouses; i++) {
-//   arrayGame.push(0);
-//   tempArray.push(i);
-// }
+let tempArray = [];
+for (let i = 0; i < numberOfPlayhouses; i++) {
+  arrayGame.push(0);
+  tempArray.push(i);
+}
 
 window.onload = createGame();
 
 function createGame() {
-  //   initialArray();
-  console.log(arrayGame);
+  initialArray();
   layout();
+}
+
+function updateArray() {
+  tempArray = [];
+  for (let j = 0; j < arrayGame.length; j++) {
+    if (arrayGame[j] == 0) {
+      // index ro vared temp konam
+      tempArray.push(j);
+    }
+  }
+  console.log("temp array : " + tempArray);
 }
 
 function layout() {
@@ -52,15 +62,15 @@ function setNumberInArray() {
   changeRandomToNumber();
 
   const index = tempArray.indexOf(randomIndex);
-  console.log(randomIndex);
   const tempArrayWithoutElement = tempArray.splice(index, 1);
-  console.log(tempArray);
   arrayGame[randomIndex] = number;
+  // console.log("array game1 : " + arrayGame);
 }
 function initialArray() {
   for (let i = 0; i < 5; i++) {
     setNumberInArray();
   }
+  // console.log("array game2 : " + arrayGame);
 }
 
 document.addEventListener("keydown", (e) => {
@@ -116,6 +126,8 @@ function moveRight() {
       }
     }
   }
+  updateArray();
+  setNumberInArray();
   layout();
 }
 function moveLeft() {
@@ -164,6 +176,8 @@ function moveLeft() {
       }
     }
   }
+  updateArray();
+  setNumberInArray();
   layout();
 }
 
@@ -231,7 +245,8 @@ function moveUp() {
     tempnum++;
     i = tempnum;
   }
-
+  updateArray();
+  setNumberInArray();
   layout();
 }
 
@@ -299,6 +314,7 @@ function moveDown() {
     tempnum--;
     i = tempnum;
   }
-
+  updateArray();
+  setNumberInArray();
   layout();
 }
