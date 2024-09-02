@@ -26,7 +26,6 @@ function updateTempArray() {
       tempArray.push(j);
     }
   }
-  console.log("temp array : " + tempArray);
 }
 
 function layout() {
@@ -45,7 +44,6 @@ function layout() {
 
 function updateArrayGame() {
   var selectArray = document.querySelectorAll(".grid-item");
-  console.log(selectArray);
   for (let i = 0; i < selectArray.length; i++) {
     selectArray[i].innerHTML = arrayGame[i];
   }
@@ -72,13 +70,11 @@ function setNumberInArray() {
   const index = tempArray.indexOf(randomIndex);
   const tempArrayWithoutElement = tempArray.splice(index, 1);
   arrayGame[randomIndex] = number;
-  // console.log("array game1 : " + arrayGame);
 }
 function initialArray() {
   for (let i = 0; i < 5; i++) {
     setNumberInArray();
   }
-  // console.log("array game2 : " + arrayGame);
 }
 
 document.addEventListener("keydown", (e) => {
@@ -114,19 +110,17 @@ function moveRight() {
     if (i % size != 0) {
       //faghat ag 2 ta adad moshabeh kenar ham bashan
       if (arrayGame[i - 1] == arrayGame[i]) {
-        console.log(arrayGame[i - 1]);
         const arrayGamePre = arrayGame[i - 1];
         arrayGame[i] = arrayGamePre * 2;
         arrayGame[i - 1] = 0;
-        console.log(arrayGame);
       }
     }
   }
   for (let i = numberOfPlayhouses - 1; i >= 0; i--) {
     //enteghal 0 ha
-    if (i != numberOfPlayhouses - 1 && i % size != 4) {
+    if (i != numberOfPlayhouses - 1 && i % size != size - 1) {
       if (arrayGame[i] != 0 && arrayGame[i + 1] == 0) {
-        while (arrayGame[i + 1] == 0 && i % size != 4) {
+        while (arrayGame[i + 1] == 0 && i % size != size - 1) {
           arrayGame[i + 1] = arrayGame[i];
           arrayGame[i] = 0;
           i++;
@@ -138,12 +132,13 @@ function moveRight() {
   setNumberInArray();
   updateArrayGame();
 }
+
 function moveLeft() {
   for (let i = 0; i < numberOfPlayhouses; i++) {
     //enteghal 0 ha
-    if (i != numberOfPlayhouses - 1 && i % size != 4) {
+    if (i != numberOfPlayhouses - 1 && i % size != size - 1) {
       if (arrayGame[i] == 0 && arrayGame[i + 1] != 0) {
-        while (arrayGame[i + 1] != 0 && i % size != 4) {
+        while (arrayGame[i + 1] != 0 && i % size != size - 1) {
           arrayGame[i] = arrayGame[i + 1];
           arrayGame[i + 1] = 0;
           while (arrayGame[i - 1] == 0 && i % size != 0) {
@@ -157,10 +152,9 @@ function moveLeft() {
     }
   }
   for (let i = 0; i < numberOfPlayhouses; i++) {
-    if (i % size != 4) {
+    if (i % size != size - 1) {
       //faghat ag 2 ta adad moshabeh kenar ham bashan
       if (arrayGame[i] == arrayGame[i + 1]) {
-        console.log(arrayGame[i - 1]);
         const arrayGameNext = arrayGame[i];
         arrayGame[i] = arrayGameNext * 2;
         arrayGame[i + 1] = 0;
@@ -169,9 +163,9 @@ function moveLeft() {
   }
   for (let i = 0; i < numberOfPlayhouses; i++) {
     //enteghal 0 ha
-    if (i != numberOfPlayhouses - 1 && i % size != 4) {
+    if (i != numberOfPlayhouses - 1 && i % size != size - 1) {
       if (arrayGame[i] == 0 && arrayGame[i + 1] != 0) {
-        while (arrayGame[i + 1] != 0 && i % size != 4) {
+        while (arrayGame[i + 1] != 0 && i % size != size - 1) {
           arrayGame[i] = arrayGame[i + 1];
           arrayGame[i + 1] = 0;
           while (arrayGame[i - 1] == 0 && i % size != 0) {
