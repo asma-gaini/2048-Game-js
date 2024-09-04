@@ -24,10 +24,12 @@ function createGame() {
 function setScore() {
   const getScoreElement = document.querySelector("#score");
   const initialScore = document.createElement("h2");
+  initialScore.setAttribute("class", "score");
   initialScore.innerHTML = "Score: " + scoreGame;
   getScoreElement.appendChild(initialScore);
 }
 
+const getScoreGame = document.querySelector(".score");
 function updateTempArray() {
   tempArray = [];
   for (let j = 0; j < arrayGame.length; j++) {
@@ -136,10 +138,13 @@ function moveRight() {
   for (let i = numberOfPlayhouses - 1; i >= 0; i--) {
     if (i % size != 0) {
       //faghat ag 2 ta adad moshabeh kenar ham bashan
-      if (arrayGame[i - 1] == arrayGame[i]) {
+      if (arrayGame[i - 1] == arrayGame[i] && arrayGame[i] != 0) {
         const arrayGamePre = arrayGame[i - 1];
         arrayGame[i] = arrayGamePre * 2;
         arrayGame[i - 1] = 0;
+        let score = arrayGamePre * 2;
+        scoreGame += score;
+        getScoreGame.innerHTML = "Score: " + scoreGame;
       }
     }
   }
@@ -185,6 +190,9 @@ function moveLeft() {
         const arrayGameNext = arrayGame[i];
         arrayGame[i] = arrayGameNext * 2;
         arrayGame[i + 1] = 0;
+        let score = arrayGameNext * 2;
+        scoreGame += score;
+        getScoreGame.innerHTML = "Score: " + scoreGame;
       }
     }
   }
@@ -242,6 +250,9 @@ function moveUp() {
       if (arrayGame[temp] == arrayGame[temp + size] && arrayGame[temp] != 0) {
         arrayGame[temp] = arrayGame[temp] * 2;
         arrayGame[temp + size] = 0;
+        let score = arrayGame[temp];
+        scoreGame += score;
+        getScoreGame.innerHTML = "Score: " + scoreGame;
         temp += size;
       } else {
         temp += size;
@@ -311,6 +322,9 @@ function moveDown() {
       if (arrayGame[temp] == arrayGame[temp - size] && arrayGame[temp] != 0) {
         arrayGame[temp] = arrayGame[temp] * 2;
         arrayGame[temp - size] = 0;
+        let score = arrayGame[temp];
+        scoreGame += score;
+        getScoreGame.innerHTML = "Score: " + scoreGame;
         temp -= size;
       } else {
         temp -= size;
