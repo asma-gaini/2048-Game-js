@@ -37,8 +37,20 @@ function layout() {
   for (let i = 0; i < size * size; i++) {
     const createGridSquare = document.createElement("div");
     createGridSquare.setAttribute("class", "grid-item");
-    createGridSquare.innerHTML = arrayGame[i];
+    if (arrayGame[i] == 0) {
+      createGridSquare.innerHTML = "  ";
+    } else {
+      createGridSquare.innerHTML = arrayGame[i];
+    }
     createGrid.appendChild(createGridSquare);
+  }
+}
+function changeNumber0() {
+  var selectArray = document.querySelectorAll(".grid-item");
+  for (let j = 0; j < selectArray.length; j++) {
+    if (selectArray[j].innerHTML == 0) {
+      selectArray[j].innerHTML = "  ";
+    }
   }
 }
 
@@ -47,11 +59,11 @@ function updateArrayGame() {
   for (let i = 0; i < selectArray.length; i++) {
     selectArray[i].innerHTML = arrayGame[i];
   }
-  // for (let j = 0; j < selectArray.length; j++) {
-  //   if (selectArray[j].innerHTML == 0) {
-  //     selectArray[j].innerHTML = "";
-  //   }
-  // }
+  for (let j = 0; j < selectArray.length; j++) {
+    if (selectArray[j].innerHTML == 0) {
+      selectArray[j].innerHTML = "  ";
+    }
+  }
 }
 
 function randomNumber() {
