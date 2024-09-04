@@ -1,3 +1,5 @@
+let scoreGame = 0;
+
 const size = 5;
 const numberOfPlayhouses = size * size;
 var number = 0;
@@ -14,8 +16,16 @@ for (let i = 0; i < numberOfPlayhouses; i++) {
 window.onload = createGame();
 
 function createGame() {
+  setScore();
   initialArray();
   layout();
+}
+
+function setScore() {
+  const getScoreElement = document.querySelector("#score");
+  const initialScore = document.createElement("h2");
+  initialScore.innerHTML = "Score: " + scoreGame;
+  getScoreElement.appendChild(initialScore);
 }
 
 function updateTempArray() {

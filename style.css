@@ -15,3 +15,9 @@
   text-align: center;
   height: 50px;
 }
+.header {
+  display: flex;
+  justify-content: center;
+  /* margin-left: auto;
+  margin-right: auto; */
+}
