@@ -85,8 +85,9 @@ function randomNumber() {
 }
 
 function changeRandomToNumber() {
-  const randomNum = randomNumber();
-  if (randomNum % 2 == 0) {
+  randomNumber();
+  console.log(randomIndex);
+  if (randomIndex % 2 == 0) {
     number = 2;
   } else {
     number = 4;
