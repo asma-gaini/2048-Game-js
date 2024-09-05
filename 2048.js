@@ -19,6 +19,7 @@ function createGame() {
   setScore();
   initialArray();
   layout();
+  resetButton();
 }
 
 function setScore() {
@@ -365,4 +366,29 @@ function moveDown() {
   updateTempArray();
   setNumberInArray();
   updateArrayGame();
+}
+
+function resetButton() {
+  const selectReset = document.querySelector("#reset");
+  const createResetDiv = document.createElement("div");
+  createResetDiv.setAttribute("class", "resetDiv");
+  selectReset.appendChild(createResetDiv);
+
+  const createResetBtn = document.createElement("button");
+  createResetBtn.setAttribute("class", "reset");
+  createResetBtn.setAttribute("onclick", "resetGame()");
+  createResetBtn.innerHTML = "Reset";
+  createResetDiv.appendChild(createResetBtn);
+}
+function resetGame() {
+  arrayGame = [];
+  for (let i = 0; i < numberOfPlayhouses; i++) {
+    arrayGame.push(0);
+    tempArray.push(i);
+  }
+  initialArray();
+  updateTempArray();
+  setNumberInArray();
+  updateArrayGame();
+  scoreGame = 0;
 }
