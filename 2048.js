@@ -381,6 +381,8 @@ function resetButton() {
   createResetDiv.appendChild(createResetBtn);
 }
 function resetGame() {
+  scoreGame = 0;
+  getScoreGame.innerHTML = "Score: " + scoreGame;
   arrayGame = [];
   for (let i = 0; i < numberOfPlayhouses; i++) {
     arrayGame.push(0);
@@ -388,7 +390,5 @@ function resetGame() {
   }
   initialArray();
   updateTempArray();
-  setNumberInArray();
   updateArrayGame();
-  scoreGame = 0;
 }
