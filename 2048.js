@@ -100,6 +100,10 @@ function setNumberInArray() {
   const index = tempArray.indexOf(randomIndex);
   const tempArrayWithoutElement = tempArray.splice(index, 1);
   arrayGame[randomIndex] = number;
+  console.log(tempArray);
+  // if (tempArray == 0) {
+  //   alert("sorry! you are game over😢");
+  // }
 }
 function initialArray() {
   for (let i = 0; i < 5; i++) {
