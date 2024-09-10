@@ -1,4 +1,38 @@
+const move_data = [
+  {
+    number: 0,
+    score: "",
+    time: "",
+    moveArray: [],
+  },
+  {
+    number: 1,
+    score: "",
+    time: "",
+    moveArray: [],
+  },
+  {
+    number: 2,
+    score: "",
+    time: "",
+    moveArray: [],
+  },
+  {
+    number: 3,
+    score: "",
+    time: "",
+    moveArray: [],
+  },
+  {
+    number: 4,
+    score: "",
+    time: "",
+    moveArray: [],
+  },
+];
+
 let scoreGame = 0;
+let moveCounter = 0;
 
 const size = 5;
 const numberOfPlayhouses = size * size;
@@ -127,6 +161,17 @@ document.addEventListener("keydown", (e) => {
     moveRight();
   }
 });
+function moveUndo() {
+  for (let i = 0; i < move_data.length; i++) {
+    if (move_data[i].number == moveCounter) {
+      move_data[i].moveArray = arrayGame;
+      move_data[i].score = scoreGame;
+      console.log("undo array : " + move_data[i].moveArray);
+      console.log("undo score : " + move_data[i].score);
+    }
+  }
+  moveCounter++;
+}
 
 function moveRight() {
   for (let i = numberOfPlayhouses - 1; i >= 0; i--) {
@@ -169,6 +214,13 @@ function moveRight() {
   updateTempArray();
   setNumberInArray();
   updateArrayGame();
+  //bayad ba shart bezaram k ag bishtar az 5 ta bood jaygozin she . ye temp bezanm k shomare ro negah darh k alan chand bayad jaygozin beshe
+  // move_data.push("array:" + arrayGame);
+  // move_data.push("score :" + scoreGame);
+  // console.log(move_data);
+  // console.log(typeof move_data);
+  // console.log(move_data[0]);
+  moveUndo();
 }
 
 function moveLeft() {
@@ -222,6 +274,7 @@ function moveLeft() {
   updateTempArray();
   setNumberInArray();
   updateArrayGame();
+  moveUndo();
 }
 
 function moveUp() {
@@ -294,6 +347,7 @@ function moveUp() {
   updateTempArray();
   setNumberInArray();
   updateArrayGame();
+  moveUndo();
 }
 
 function moveDown() {
@@ -366,6 +420,7 @@ function moveDown() {
   updateTempArray();
   setNumberInArray();
   updateArrayGame();
+  moveUndo();
 }
 
 function resetButton() {
