@@ -464,6 +464,22 @@ function undoButton() {
   createUndoBtn.innerHTML = "Undo";
   selectUndo.appendChild(createUndoBtn);
 }
-function undoGame(){
+function undoGame() {
+  console.log("move before undo: " + moveCounter);
+  moveCounter -= 2;
+  console.log("move after undo: " + moveCounter);
 
+  for (let i = 0; i < move_data.length; i++) {
+    if (move_data[i].number == moveCounter % size) {
+      arrayGame = move_data[i].moveArray;
+      scoreGame = move_data[i].score;
+      console.log("array: " + arrayGame);
+      console.log("score undo: " + scoreGame);
+    } else if (move_data[i].number == size) {
+      arrayGame = move_data[i].moveArray;
+      scoreGame = move_data[i].score;
+    }
+  }
+
+  moveCounter++;
 }
