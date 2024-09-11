@@ -473,11 +473,19 @@ function undoGame() {
     if (move_data[i].number == moveCounter % size) {
       arrayGame = move_data[i].moveArray;
       scoreGame = move_data[i].score;
+      updateTempArray();
+      updateArrayGame();
+      getScoreGame.innerHTML = "Score: " + scoreGame;
+      break;
       console.log("array: " + arrayGame);
       console.log("score undo: " + scoreGame);
     } else if (move_data[i].number == size) {
       arrayGame = move_data[i].moveArray;
       scoreGame = move_data[i].score;
+      updateTempArray();
+      updateArrayGame();
+      getScoreGame.innerHTML = "Score: " + scoreGame;
+      break;
     }
   }
 
