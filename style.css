@@ -22,8 +22,8 @@
 .header {
   display: flex;
   justify-content: center;
-  /* margin-left: auto;
-  margin-right: auto; */
+  align-items: center;
+  gap: 80px;
 }
 .resetDiv {
   margin-top: 20px;

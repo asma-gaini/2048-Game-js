@@ -1,11 +1,5 @@
 const move_data = [
   {
-    number: 0,
-    score: "",
-    time: "",
-    moveArray: [],
-  },
-  {
     number: 1,
     score: "",
     time: "",
@@ -29,10 +23,16 @@ const move_data = [
     time: "",
     moveArray: [],
   },
+  {
+    number: 5,
+    score: "",
+    time: "",
+    moveArray: [],
+  },
 ];
 
 let scoreGame = 0;
-let moveCounter = 0;
+let moveCounter = 1;
 
 const size = 5;
 const numberOfPlayhouses = size * size;
@@ -54,6 +54,7 @@ function createGame() {
   initialArray();
   layout();
   resetButton();
+  undoButton();
 }
 
 function setScore() {
@@ -163,14 +164,20 @@ document.addEventListener("keydown", (e) => {
 });
 function moveUndo() {
   for (let i = 0; i < move_data.length; i++) {
-    if (move_data[i].number == moveCounter) {
+    if (move_data[i].number == moveCounter % size) {
       move_data[i].moveArray = arrayGame;
       move_data[i].score = scoreGame;
       console.log("undo array : " + move_data[i].moveArray);
       console.log("undo score : " + move_data[i].score);
+    } else if (move_data[i].number == size) {
+      move_data[i].moveArray = arrayGame;
+      move_data[i].score = scoreGame;
     }
   }
+  console.log("move before: " + moveCounter);
+
   moveCounter++;
+  console.log("move after: " + moveCounter);
 }
 
 function moveRight() {
@@ -446,4 +453,17 @@ function resetGame() {
   initialArray();
   updateTempArray();
   updateArrayGame();
+}
+
+function undoButton() {
+  const selectUndo = document.querySelector("#undo");
+
+  const createUndoBtn = document.createElement("button");
+  createUndoBtn.setAttribute("class", "reset");
+  createUndoBtn.setAttribute("onclick", "undoGame()");
+  createUndoBtn.innerHTML = "Undo";
+  selectUndo.appendChild(createUndoBtn);
+}
+function undoGame(){
+
 }
