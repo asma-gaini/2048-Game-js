@@ -39,7 +39,9 @@ const numberOfPlayhouses = size * size;
 var number = 0;
 var randomIndex = 0;
 let arrayGame = [
-  // 0, 2, 0, 0, 4, 2, 2, 0, 4, 0, 2, 0, 4, 4, 2, 0, 2, 4, 0, 0, 0, 0, 2, 2, 2,
+  // 2, 0, 0, 0, 4, 0, 2, 0, 4, 0, 0, 0, 4, 4, 2, 0, 2, 4, 0, 0, 2, 0, 2, 2, 2,
+  // 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+
 ];
 let tempArray = [];
 for (let i = 0; i < numberOfPlayhouses; i++) {
@@ -122,7 +124,7 @@ function randomNumber() {
 
 function changeRandomToNumber() {
   randomNumber();
-  console.log(randomIndex);
+  // console.log(randomIndex);
   if (randomIndex % 2 == 0) {
     number = 2;
   } else {
@@ -136,7 +138,7 @@ function setNumberInArray() {
   const index = tempArray.indexOf(randomIndex);
   const tempArrayWithoutElement = tempArray.splice(index, 1);
   arrayGame[randomIndex] = number;
-  console.log(tempArray);
+  // console.log(tempArray);
   // if (tempArray == 0) {
   //   alert("sorry! you are game over😢");
   // }
@@ -164,20 +166,31 @@ document.addEventListener("keydown", (e) => {
 });
 function moveUndo() {
   for (let i = 0; i < move_data.length; i++) {
+    console.log("i: " + i + " move_data[i].number: " + move_data[i].number);
     if (move_data[i].number == moveCounter % size) {
+      if (i == 0) {
+        console.log("yes");
+      }
+      console.log("arrayGame: " + arrayGame);
       move_data[i].moveArray = arrayGame;
+      console.log("move_data[i].moveArray: " + move_data[i].moveArray);
       move_data[i].score = scoreGame;
-      console.log("undo array : " + move_data[i].moveArray);
-      console.log("undo score : " + move_data[i].score);
+      console.log("undo array : " + move_data[0].moveArray);
+      break;
+      // console.log("undo score : " + move_data[i].score);
     } else if (move_data[i].number == size) {
+      console.log("arrayGame: " + arrayGame);
       move_data[i].moveArray = arrayGame;
+      console.log("move_data[i].moveArray: " + move_data[i].moveArray);
+
       move_data[i].score = scoreGame;
+      break;
     }
   }
-  console.log("move before: " + moveCounter);
+  // console.log("move before: " + moveCounter);
 
   moveCounter++;
-  console.log("move after: " + moveCounter);
+  // console.log("move after: " + moveCounter);
 }
 
 function moveRight() {
@@ -294,8 +307,8 @@ function moveUp() {
         arrayGame[i + size] = 0;
         if (arrayGame[i] != 0) {
           for (let j = i; j >= 0; j -= size) {
-            if (arrayGame[i - size] == 0) {
-              var t = i;
+            if (arrayGame[j - size] == 0) {
+              var t = j;
               arrayGame[t - size] = arrayGame[t];
               arrayGame[t] = 0;
             }
@@ -335,8 +348,8 @@ function moveUp() {
         arrayGame[i + size] = 0;
         if (arrayGame[i] != 0) {
           for (let j = i; j >= 0; j -= size) {
-            if (arrayGame[i - size] == 0) {
-              t = i;
+            if (arrayGame[j - size] == 0) {
+              t = j;
               arrayGame[t - size] = arrayGame[t];
               arrayGame[t] = 0;
             }
@@ -367,8 +380,8 @@ function moveDown() {
         arrayGame[i - size] = 0;
         if (arrayGame[i + size] == 0) {
           for (let j = i; j <= numberOfPlayhouses - size; j += size) {
-            if (arrayGame[i + size] == 0) {
-              var t = i;
+            if (arrayGame[j + size] == 0) {
+              var t = j;
               arrayGame[t + size] = arrayGame[t];
               arrayGame[t] = 0;
             }
@@ -408,8 +421,8 @@ function moveDown() {
         arrayGame[i - size] = 0;
         if (arrayGame[i + size] == 0) {
           for (let j = i; j <= numberOfPlayhouses - size; j += size) {
-            if (arrayGame[i + size] == 0) {
-              var t = i;
+            if (arrayGame[j + size] == 0) {
+              var t = j;
               arrayGame[t + size] = arrayGame[t];
               arrayGame[t] = 0;
             }
@@ -465,22 +478,27 @@ function undoButton() {
   selectUndo.appendChild(createUndoBtn);
 }
 function undoGame() {
-  console.log("move before undo: " + moveCounter);
+  // console.log("move before undo: " + moveCounter);
   moveCounter -= 2;
-  console.log("move after undo: " + moveCounter);
+  // console.log("move after undo: " + moveCounter);
 
   for (let i = 0; i < move_data.length; i++) {
+    // console.log("i : " + i + " move_data[i].number: " + move_data[i].number);
     if (move_data[i].number == moveCounter % size) {
+      // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
       arrayGame = move_data[i].moveArray;
+      // console.log("arrayGame : " + arrayGame);
       scoreGame = move_data[i].score;
       updateTempArray();
       updateArrayGame();
       getScoreGame.innerHTML = "Score: " + scoreGame;
       break;
-      console.log("array: " + arrayGame);
-      console.log("score undo: " + scoreGame);
     } else if (move_data[i].number == size) {
+      // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
+
       arrayGame = move_data[i].moveArray;
+      // console.log("arrayGame : " + arrayGame);
+
       scoreGame = move_data[i].score;
       updateTempArray();
       updateArrayGame();
