@@ -1,4 +1,4 @@
-const move_data = [
+let move_data = [
   {
     number: 1,
     score: "",
@@ -30,9 +30,22 @@ const move_data = [
     moveArray: [],
   },
 ];
+var my4dArray = [
+  [1, [], ,],
+  [2, [], ,],
+  [3, [], ,],
+  [4, [], ,],
+  [5, [], ,],
+];
+
+// my3dArray[0][0] = [0, 2, 0, 3, 5];
+// my3dArray[0][1] = [100];
+// my3dArray[0][3] = ["time"];
+// console.log(my3dArray);
 
 let scoreGame = 0;
 let moveCounter = 1;
+let clickUndo = 0;
 
 const size = 5;
 const numberOfPlayhouses = size * size;
@@ -41,7 +54,6 @@ var randomIndex = 0;
 let arrayGame = [
   // 2, 0, 0, 0, 4, 0, 2, 0, 4, 0, 0, 0, 4, 4, 2, 0, 2, 4, 0, 0, 2, 0, 2, 2, 2,
   // 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-
 ];
 let tempArray = [];
 for (let i = 0; i < numberOfPlayhouses; i++) {
@@ -166,22 +178,13 @@ document.addEventListener("keydown", (e) => {
 });
 function moveUndo() {
   for (let i = 0; i < move_data.length; i++) {
-    console.log("i: " + i + " move_data[i].number: " + move_data[i].number);
     if (move_data[i].number == moveCounter % size) {
-      if (i == 0) {
-        console.log("yes");
-      }
-      console.log("arrayGame: " + arrayGame);
       move_data[i].moveArray = arrayGame;
-      console.log("move_data[i].moveArray: " + move_data[i].moveArray);
       move_data[i].score = scoreGame;
-      console.log("undo array : " + move_data[0].moveArray);
       break;
       // console.log("undo score : " + move_data[i].score);
     } else if (move_data[i].number == size) {
-      console.log("arrayGame: " + arrayGame);
       move_data[i].moveArray = arrayGame;
-      console.log("move_data[i].moveArray: " + move_data[i].moveArray);
 
       move_data[i].score = scoreGame;
       break;
@@ -192,6 +195,28 @@ function moveUndo() {
   moveCounter++;
   // console.log("move after: " + moveCounter);
 }
+
+// function moveUndo() {
+//   for (let i = 0; i < my4dArray.length; i++) {
+//     if (my4dArray[i][0] == moveCounter % size) {
+//       my4dArray[i][1] = arrayGame;
+//       my4dArray[i][2] = scoreGame;
+//       console.log("yes");
+//       break;
+//       // console.log("undo score : " + move_data[i].score);
+//     } else if (my4dArray[i][0] == size) {
+//       my4dArray[i][1] = arrayGame;
+
+//       my4dArray[i][2] = scoreGame;
+//       console.log("heyy");
+//       break;
+//     }
+//   }
+//   // console.log("move before: " + moveCounter);
+
+//   moveCounter++;
+//   // console.log("move after: " + moveCounter);
+// }
 
 function moveRight() {
   for (let i = numberOfPlayhouses - 1; i >= 0; i--) {
@@ -478,34 +503,37 @@ function undoButton() {
   selectUndo.appendChild(createUndoBtn);
 }
 function undoGame() {
-  // console.log("move before undo: " + moveCounter);
-  moveCounter -= 2;
-  // console.log("move after undo: " + moveCounter);
+  if (clickUndo < 4) {
+    // console.log("move before undo: " + moveCounter);
+    moveCounter -= 2;
+    // console.log("move after undo: " + moveCounter);
 
-  for (let i = 0; i < move_data.length; i++) {
-    // console.log("i : " + i + " move_data[i].number: " + move_data[i].number);
-    if (move_data[i].number == moveCounter % size) {
-      // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
-      arrayGame = move_data[i].moveArray;
-      // console.log("arrayGame : " + arrayGame);
-      scoreGame = move_data[i].score;
-      updateTempArray();
-      updateArrayGame();
-      getScoreGame.innerHTML = "Score: " + scoreGame;
-      break;
-    } else if (move_data[i].number == size) {
-      // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
+    for (let i = 0; i < move_data.length; i++) {
+      // console.log("i : " + i + " move_data[i].number: " + move_data[i].number);
+      if (move_data[i].number == moveCounter % size) {
+        // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
+        arrayGame = move_data[i].moveArray;
+        // console.log("arrayGame : " + arrayGame);
+        scoreGame = move_data[i].score;
+        updateTempArray();
+        updateArrayGame();
+        getScoreGame.innerHTML = "Score: " + scoreGame;
+        break;
+      } else if (move_data[i].number == size) {
+        // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
 
-      arrayGame = move_data[i].moveArray;
-      // console.log("arrayGame : " + arrayGame);
+        arrayGame = move_data[i].moveArray;
+        // console.log("arrayGame : " + arrayGame);
 
-      scoreGame = move_data[i].score;
-      updateTempArray();
-      updateArrayGame();
-      getScoreGame.innerHTML = "Score: " + scoreGame;
-      break;
+        scoreGame = move_data[i].score;
+        updateTempArray();
+        updateArrayGame();
+        getScoreGame.innerHTML = "Score: " + scoreGame;
+        break;
+      }
     }
-  }
 
-  moveCounter++;
+    moveCounter++;
+    clickUndo++;
+  }
 }
