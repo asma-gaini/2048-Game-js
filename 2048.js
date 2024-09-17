@@ -30,22 +30,6 @@ let move_data = [
     moveArray: [],
   },
 ];
-var my4dArray = [
-  [1, [], ,],
-  [2, [], ,],
-  [3, [], ,],
-  [4, [], ,],
-  [5, [], ,],
-];
-
-var undoArray = [];
-var tempUndoArray = [[], []];
-var undoCounter = 0;
-
-// my3dArray[0][0] = [0, 2, 0, 3, 5];
-// my3dArray[0][1] = [100];
-// my3dArray[0][3] = ["time"];
-// console.log(my3dArray);
 
 let scoreGame = 0;
 let moveCounter = 1;
@@ -140,7 +124,6 @@ function randomNumber() {
 
 function changeRandomToNumber() {
   randomNumber();
-  // console.log(randomIndex);
   if (randomIndex % 2 == 0) {
     number = 2;
   } else {
@@ -187,13 +170,10 @@ function moveUndo() {
       for (let i = 0; i < arrayGame.length; i++) {
         arrayTemp.push(arrayGame[i]);
       }
-      console.log("temp: " + arrayTemp);
       move_data[i].moveArray = arrayTemp;
       arrayTemp = [];
       move_data[i].score = scoreGame;
-      console.log(move_data);
       break;
-      // console.log("undo score : " + move_data[i].score);
     } else if (move_data[i].number == size) {
       let arrayTemp = [];
       for (let i = 0; i < arrayGame.length; i++) {
@@ -205,50 +185,10 @@ function moveUndo() {
       break;
     }
   }
-  // console.log("move before: " + moveCounter);
 
   moveCounter++;
-  // console.log("move after: " + moveCounter);
 }
 
-// function moveUndo() {
-//   for (let i = 0; i < my4dArray.length; i++) {
-//     if (my4dArray[i][0] == moveCounter % size) {
-//       my4dArray[i][1] = arrayGame;
-//       my4dArray[i][2] = scoreGame;
-//       console.log("yes");
-//       break;
-//       // console.log("undo score : " + move_data[i].score);
-//     } else if (my4dArray[i][0] == size) {
-//       my4dArray[i][1] = arrayGame;
-
-//       my4dArray[i][2] = scoreGame;
-//       console.log("heyy");
-//       break;
-//     }
-//   }
-//   // console.log("move before: " + moveCounter);
-
-//   moveCounter++;
-//   // console.log("move after: " + moveCounter);
-// }
-
-// function moveUndo() {
-//   console.log(undoCounter);
-//   console.log("array: " + arrayGame);
-//   console.log("score: " + scoreGame);
-//   tempUndoArray[0][0] = scoreGame;
-//   tempUndoArray[0][1] = arrayGame;
-//   console.log("tempUndoArray: " + tempUndoArray);
-//   if (undoCounter < 5) {
-//     undoArray.push(tempUndoArray);
-//     undoCounter++;
-//   }
-//   // else if (undoCounter>=5){
-
-//   // }
-//   console.log("undoArray : " + undoArray);
-// }
 
 function moveRight() {
   for (let i = numberOfPlayhouses - 1; i >= 0; i--) {
@@ -291,12 +231,6 @@ function moveRight() {
   updateTempArray();
   setNumberInArray();
   updateArrayGame();
-  //bayad ba shart bezaram k ag bishtar az 5 ta bood jaygozin she . ye temp bezanm k shomare ro negah darh k alan chand bayad jaygozin beshe
-  // move_data.push("array:" + arrayGame);
-  // move_data.push("score :" + scoreGame);
-  // console.log(move_data);
-  // console.log(typeof move_data);
-  // console.log(move_data[0]);
   moveUndo();
 }
 
@@ -536,28 +470,22 @@ function undoButton() {
 }
 function undoGame() {
   if (clickUndo < 4) {
-    // console.log("move before undo: " + moveCounter);
     moveCounter -= 2;
-    // console.log("move after undo: " + moveCounter);
 
     for (let i = 0; i < move_data.length; i++) {
-      // console.log("i : " + i + " move_data[i].number: " + move_data[i].number);
       if (move_data[i].number == moveCounter % size) {
-        // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
         let arrayTemp = [];
         for (let j = 0; j < move_data[i].moveArray.length; j++) {
           arrayTemp.push(move_data[i].moveArray[j]);
         }
         arrayGame = arrayTemp;
         arrayTemp = [];
-        // console.log("arrayGame : " + arrayGame);
         scoreGame = move_data[i].score;
         updateTempArray();
         updateArrayGame();
         getScoreGame.innerHTML = "Score: " + scoreGame;
         break;
       } else if (move_data[i].number == size) {
-        // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
 
         let arrayTemp = [];
         for (let j = 0; j < move_data[i].moveArray.length; j++) {
@@ -565,7 +493,6 @@ function undoGame() {
         }
         arrayGame = arrayTemp;
         arrayTemp = [];
-        // console.log("arrayGame : " + arrayGame);
 
         scoreGame = move_data[i].score;
         updateTempArray();
