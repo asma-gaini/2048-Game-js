@@ -38,6 +38,10 @@ var my4dArray = [
   [5, [], ,],
 ];
 
+var undoArray = [];
+var tempUndoArray = [[], []];
+var undoCounter = 0;
+
 // my3dArray[0][0] = [0, 2, 0, 3, 5];
 // my3dArray[0][1] = [100];
 // my3dArray[0][3] = ["time"];
@@ -179,8 +183,14 @@ document.addEventListener("keydown", (e) => {
 function moveUndo() {
   for (let i = 0; i < move_data.length; i++) {
     if (move_data[i].number == moveCounter % size) {
-      move_data[i].moveArray = arrayGame;
+      let arrayTemp = [];
+      for (let i = 0; i < arrayGame.length; i++) {
+        arrayTemp.push(arrayGame[i]);
+      }
+      console.log("temp: " + arrayTemp);
+      move_data[i].moveArray = arrayTemp;
       move_data[i].score = scoreGame;
+      console.log(move_data);
       break;
       // console.log("undo score : " + move_data[i].score);
     } else if (move_data[i].number == size) {
@@ -216,6 +226,23 @@ function moveUndo() {
 
 //   moveCounter++;
 //   // console.log("move after: " + moveCounter);
+// }
+
+// function moveUndo() {
+//   console.log(undoCounter);
+//   console.log("array: " + arrayGame);
+//   console.log("score: " + scoreGame);
+//   tempUndoArray[0][0] = scoreGame;
+//   tempUndoArray[0][1] = arrayGame;
+//   console.log("tempUndoArray: " + tempUndoArray);
+//   if (undoCounter < 5) {
+//     undoArray.push(tempUndoArray);
+//     undoCounter++;
+//   }
+//   // else if (undoCounter>=5){
+
+//   // }
+//   console.log("undoArray : " + undoArray);
 // }
 
 function moveRight() {
@@ -516,6 +543,7 @@ function undoGame() {
         // console.log("arrayGame : " + arrayGame);
         scoreGame = move_data[i].score;
         updateTempArray();
+        // 
         updateArrayGame();
         getScoreGame.innerHTML = "Score: " + scoreGame;
         break;
