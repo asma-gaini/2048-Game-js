@@ -189,13 +189,18 @@ function moveUndo() {
       }
       console.log("temp: " + arrayTemp);
       move_data[i].moveArray = arrayTemp;
+      arrayTemp = [];
       move_data[i].score = scoreGame;
       console.log(move_data);
       break;
       // console.log("undo score : " + move_data[i].score);
     } else if (move_data[i].number == size) {
-      move_data[i].moveArray = arrayGame;
-
+      let arrayTemp = [];
+      for (let i = 0; i < arrayGame.length; i++) {
+        arrayTemp.push(arrayGame[i]);
+      }
+      move_data[i].moveArray = arrayTemp;
+      arrayTemp = [];
       move_data[i].score = scoreGame;
       break;
     }
@@ -539,18 +544,27 @@ function undoGame() {
       // console.log("i : " + i + " move_data[i].number: " + move_data[i].number);
       if (move_data[i].number == moveCounter % size) {
         // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
-        arrayGame = move_data[i].moveArray;
+        let arrayTemp = [];
+        for (let j = 0; j < move_data[i].moveArray.length; j++) {
+          arrayTemp.push(move_data[i].moveArray[j]);
+        }
+        arrayGame = arrayTemp;
+        arrayTemp = [];
         // console.log("arrayGame : " + arrayGame);
         scoreGame = move_data[i].score;
         updateTempArray();
-        // 
         updateArrayGame();
         getScoreGame.innerHTML = "Score: " + scoreGame;
         break;
       } else if (move_data[i].number == size) {
         // console.log("move_data[i].moveArray : " + move_data[i].moveArray);
 
-        arrayGame = move_data[i].moveArray;
+        let arrayTemp = [];
+        for (let j = 0; j < move_data[i].moveArray.length; j++) {
+          arrayTemp.push(move_data[i].moveArray[j]);
+        }
+        arrayGame = arrayTemp;
+        arrayTemp = [];
         // console.log("arrayGame : " + arrayGame);
 
         scoreGame = move_data[i].score;
