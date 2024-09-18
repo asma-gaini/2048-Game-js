@@ -29,6 +29,12 @@ let move_data = [
     time: "",
     moveArray: [],
   },
+  {
+    number: 6,
+    score: "",
+    time: "",
+    moveArray: [],
+  },
 ];
 
 let scoreGame = 0;
@@ -189,7 +195,6 @@ function moveUndo() {
   moveCounter++;
 }
 
-
 function moveRight() {
   for (let i = numberOfPlayhouses - 1; i >= 0; i--) {
     //enteghal 0 ha
@@ -232,6 +237,9 @@ function moveRight() {
   setNumberInArray();
   updateArrayGame();
   moveUndo();
+  if (clickUndo > 0) {
+    clickUndo--;
+  }
 }
 
 function moveLeft() {
@@ -286,6 +294,9 @@ function moveLeft() {
   setNumberInArray();
   updateArrayGame();
   moveUndo();
+  if (clickUndo > 0) {
+    clickUndo--;
+  }
 }
 
 function moveUp() {
@@ -359,6 +370,9 @@ function moveUp() {
   setNumberInArray();
   updateArrayGame();
   moveUndo();
+  if (clickUndo > 0) {
+    clickUndo--;
+  }
 }
 
 function moveDown() {
@@ -432,6 +446,9 @@ function moveDown() {
   setNumberInArray();
   updateArrayGame();
   moveUndo();
+  if (clickUndo > 0) {
+    clickUndo--;
+  }
 }
 
 function resetButton() {
@@ -469,7 +486,8 @@ function undoButton() {
   selectUndo.appendChild(createUndoBtn);
 }
 function undoGame() {
-  if (clickUndo < 4) {
+  console.log(clickUndo);
+  if (clickUndo < 5) {
     moveCounter -= 2;
 
     for (let i = 0; i < move_data.length; i++) {
@@ -486,7 +504,6 @@ function undoGame() {
         getScoreGame.innerHTML = "Score: " + scoreGame;
         break;
       } else if (move_data[i].number == size) {
-
         let arrayTemp = [];
         for (let j = 0; j < move_data[i].moveArray.length; j++) {
           arrayTemp.push(move_data[i].moveArray[j]);
