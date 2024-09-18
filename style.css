@@ -44,3 +44,42 @@
   font-weight: bold;
   font-size: 40px;
 }
+
+.stopwatch {
+  /* margin: 50px auto; */
+  text-align: center;
+}
+
+.stopwatch #display {
+  font-size: 30px;
+  font-weight: bold;
+  color: #111111;
+  padding: 10px;
+  /* margin-bottom: 24px; */
+}
+
+.stopwatch button {
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.stopwatch button {
+  /* margin: 20px; */
+  border: none;
+  /* padding: 10px 30px; */
+  cursor: pointer;
+  color: #fff;
+}
+
+.stopwatch #alt-btns {
+  background-color: green;
+}
+
+.stopwatch #reset {
+  background-color: red;
+}
