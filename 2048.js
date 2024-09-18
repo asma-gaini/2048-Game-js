@@ -29,12 +29,6 @@ let move_data = [
     time: "",
     moveArray: [],
   },
-  {
-    number: 6,
-    score: "",
-    time: "",
-    moveArray: [],
-  },
 ];
 
 let scoreGame = 0;
@@ -487,7 +481,7 @@ function undoButton() {
 }
 function undoGame() {
   console.log(clickUndo);
-  if (clickUndo < 5) {
+  if (clickUndo < 4) {
     moveCounter -= 2;
 
     for (let i = 0; i < move_data.length; i++) {
