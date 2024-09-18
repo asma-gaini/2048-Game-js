@@ -35,6 +35,8 @@ let scoreGame = 0;
 let moveCounter = 1;
 let clickUndo = 0;
 
+let moveNumber = 0;
+
 const size = 5;
 const numberOfPlayhouses = size * size;
 var number = 0;
@@ -239,6 +241,7 @@ function moveRight() {
   if (clickUndo > 0) {
     clickUndo--;
   }
+  moveNumber++;
 }
 
 function moveLeft() {
@@ -296,6 +299,7 @@ function moveLeft() {
   if (clickUndo > 0) {
     clickUndo--;
   }
+  moveNumber++;
 }
 
 function moveUp() {
@@ -372,6 +376,7 @@ function moveUp() {
   if (clickUndo > 0) {
     clickUndo--;
   }
+  moveNumber++;
 }
 
 function moveDown() {
@@ -448,6 +453,7 @@ function moveDown() {
   if (clickUndo > 0) {
     clickUndo--;
   }
+  moveNumber++;
 }
 
 function resetButton() {
@@ -497,7 +503,6 @@ function startTimer() {
         .padStart(2, "0");
   }, 1000);
 }
-
 
 function resetTime() {
   if (interval) {
