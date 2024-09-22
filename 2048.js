@@ -481,6 +481,14 @@ function resetGame() {
   updateArrayGame();
   resetTime();
   startTimer();
+  resetUndoArray();
+}
+
+function resetUndoArray() {
+  for (let i = 0; i < move_data.length; i++) {
+    move_data[i].moveArray = [];
+    move_data[i].score = "";
+  }
 }
 
 function startTimer() {
@@ -560,3 +568,30 @@ function undoGame() {
     clickUndo++;
   }
 }
+function setLocalStorageGame() {
+  let gameSetting = {
+    scoreGame: scoreGame,
+    moveCounter: moveCounter,
+    clickUndo: clickUndo,
+    moveNumber: moveNumber,
+    time: time,
+  };
+
+  let movesGame = JSON.stringify(move_data);
+  let settingGame = JSON.stringify(gameSetting);
+  let setLocalStorage = movesGame + settingGame;
+  console.log(setLocalStorage);
+  localStorage.setItem("game", setLocalStorage);
+}
+window.onbeforeunload = function (event) {
+  var message = "Important: Please click on 'Save' button to leave this page.";
+  if (typeof event == "undefined") {
+    console.log("yes");
+    event = window.event;
+  }
+  if (event) {
+    setLocalStorageGame();
+    // event.returnValue = message;
+  }
+  // return ;
+};
