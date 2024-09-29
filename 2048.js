@@ -32,12 +32,12 @@ let move_data = [
 ];
 
 let scoreGame = 0;
-let moveCounter = 1;
+let moveCounter = 1; //tetad harekat k baghimandesho b size hesab mikonim bara por kardan arraye ye harekat
 let clickUndo = 0;
 
-let moveNumber = 0;
+let moveNumber = 0; //all moves
 
-const size = 5;
+const size = 5; //size of row and clumn
 const numberOfPlayhouses = size * size;
 var number = 0;
 var randomIndex = 0;
@@ -242,6 +242,8 @@ function moveRight() {
     clickUndo--;
   }
   moveNumber++;
+  setLocalStorageGame();
+  console.log(moveNumber);
 }
 
 function moveLeft() {
@@ -300,6 +302,8 @@ function moveLeft() {
     clickUndo--;
   }
   moveNumber++;
+  setLocalStorageGame();
+  console.log(moveNumber);
 }
 
 function moveUp() {
@@ -377,6 +381,8 @@ function moveUp() {
     clickUndo--;
   }
   moveNumber++;
+  setLocalStorageGame();
+  console.log(moveNumber);
 }
 
 function moveDown() {
@@ -454,6 +460,8 @@ function moveDown() {
     clickUndo--;
   }
   moveNumber++;
+  setLocalStorageGame();
+  console.log(moveNumber);
 }
 
 function resetButton() {
@@ -531,7 +539,6 @@ function undoButton() {
   selectUndo.appendChild(createUndoBtn);
 }
 function undoGame() {
-  console.log(clickUndo);
   if (clickUndo < 4) {
     moveCounter -= 2;
 
@@ -567,6 +574,8 @@ function undoGame() {
     moveCounter++;
     clickUndo++;
   }
+  setLocalStorageGame();
+  console.log(moveNumber);
 }
 function setLocalStorageGame() {
   let gameSetting = {
@@ -580,13 +589,11 @@ function setLocalStorageGame() {
   let movesGame = JSON.stringify(move_data);
   let settingGame = JSON.stringify(gameSetting);
   let setLocalStorage = movesGame + settingGame;
-  console.log(setLocalStorage);
   localStorage.setItem("game", setLocalStorage);
 }
 window.onbeforeunload = function (event) {
   var message = "Important: Please click on 'Save' button to leave this page.";
   if (typeof event == "undefined") {
-    console.log("yes");
     event = window.event;
   }
   if (event) {
