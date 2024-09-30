@@ -58,12 +58,18 @@ var display = document.getElementById("display");
 window.onload = createGame();
 
 function createGame() {
-  setScore();
-  initialArray();
-  layout();
-  resetButton();
-  undoButton();
-  startTimer();
+  // if (move_data[0].moveArray == []) {
+  // setScore();
+  // initialArray();
+  // layout();
+  // resetButton();
+  // undoButton();
+  // startTimer();
+
+  // } else {
+  // readLocalstorage();
+  // }
+  readLocalstorage();
 }
 
 function setScore() {
@@ -243,7 +249,8 @@ function moveRight() {
   }
   moveNumber++;
   setLocalStorageGame();
-  console.log(moveNumber);
+  // console.log(moveNumber);
+  // readLocalstorage();
 }
 
 function moveLeft() {
@@ -303,7 +310,8 @@ function moveLeft() {
   }
   moveNumber++;
   setLocalStorageGame();
-  console.log(moveNumber);
+  // console.log(moveNumber);
+  // readLocalstorage();
 }
 
 function moveUp() {
@@ -382,7 +390,8 @@ function moveUp() {
   }
   moveNumber++;
   setLocalStorageGame();
-  console.log(moveNumber);
+  // console.log(moveNumber);
+  // readLocalstorage();
 }
 
 function moveDown() {
@@ -461,7 +470,8 @@ function moveDown() {
   }
   moveNumber++;
   setLocalStorageGame();
-  console.log(moveNumber);
+  // console.log(moveNumber);
+  // readLocalstorage();
 }
 
 function resetButton() {
@@ -477,6 +487,8 @@ function resetButton() {
   createResetDiv.appendChild(createResetBtn);
 }
 function resetGame() {
+  moveNumber = 0;
+  moveCounter = 1;
   scoreGame = 0;
   getScoreGame.innerHTML = "Score: " + scoreGame;
   arrayGame = [];
@@ -497,6 +509,7 @@ function resetUndoArray() {
     move_data[i].moveArray = [];
     move_data[i].score = "";
   }
+  localStorage.clear();
 }
 
 function startTimer() {
@@ -575,7 +588,7 @@ function undoGame() {
     clickUndo++;
   }
   setLocalStorageGame();
-  console.log(moveNumber);
+  // console.log(moveNumber);
 }
 function setLocalStorageGame() {
   let gameSetting = {
@@ -588,7 +601,9 @@ function setLocalStorageGame() {
 
   let movesGame = JSON.stringify(move_data);
   let settingGame = JSON.stringify(gameSetting);
-  let setLocalStorage = movesGame + settingGame;
+  let setLocalStorage = movesGame + "/" + settingGame;
+  // let setLocalStorage = movesGame;
+
   localStorage.setItem("game", setLocalStorage);
 }
 window.onbeforeunload = function (event) {
@@ -602,3 +617,69 @@ window.onbeforeunload = function (event) {
   }
   // return ;
 };
+
+function readLocalstorage() {
+  const getLocalstorageTemp = window.localStorage.getItem("game");
+  const splitLocalstorageTemp = getLocalstorageTemp.split("/");
+  const settingTemp = splitLocalstorageTemp[1];
+  const convertLocalstorageSettingTemp = JSON.parse(settingTemp);
+  if (
+    convertLocalstorageSettingTemp.moveNumber == 0 ||
+    convertLocalstorageSettingTemp.moveNumber == null
+  ) {
+    setScore();
+    initialArray();
+    layout();
+    resetButton();
+    undoButton();
+    startTimer();
+  } else {
+    const getLocalstorage = window.localStorage.getItem("game");
+    const splitLocalstorage = getLocalstorage.split("/");
+    const moveData = splitLocalstorage[0];
+    const setting = splitLocalstorage[1];
+
+    const convertLocalstorageMoveData = JSON.parse(moveData);
+    const convertLocalstorageSetting = JSON.parse(setting);
+
+    // console.log(convertLocalstorageMoveData);
+    for (let i = 0; i < convertLocalstorageMoveData.length; i++) {
+      console.log(convertLocalstorageMoveData[i]);
+      move_data[i].score = convertLocalstorageMoveData[i].score;
+      for (
+        let j = 0;
+        j < convertLocalstorageMoveData[i].moveArray.length;
+        j++
+      ) {
+        move_data[i].moveArray[j] = convertLocalstorageMoveData[i].moveArray[j];
+      }
+    }
+
+    console.log(moveData);
+    console.log(convertLocalstorageSetting);
+    scoreGame = convertLocalstorageSetting.scoreGame;
+    moveCounter = convertLocalstorageSetting.moveCounter;
+    clickUndo = convertLocalstorageSetting.clickUndo;
+    moveNumber = convertLocalstorageSetting.moveNumber;
+
+    setScore();
+
+    const revertMoveNumber = moveNumber % size;
+    if (revertMoveNumber != 0) {
+      revertNum = revertMoveNumber - 1;
+      for (let t = 0; t < size * size; t++) {
+        arrayGame[t] = move_data[revertNum].moveArray[t];
+      }
+    } else {
+      for (let t = 0; t < size * size; t++) {
+        arrayGame[t] = move_data[size - 1].moveArray[t];
+      }
+    }
+    layout();
+    updateTempArray();
+    resetButton();
+    undoButton();
+    startTimer();
+    // getScoreGame.innerHTML = "Score: " + scoreGame;
+  }
+}
