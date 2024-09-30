@@ -663,8 +663,8 @@ function readLocalstorage() {
     moveNumber = convertLocalstorageSetting.moveNumber;
 
     setScore();
-
-    const revertMoveNumber = moveNumber % size;
+    let move = moveCounter - 1;
+    const revertMoveNumber = move % size;
     if (revertMoveNumber != 0) {
       revertNum = revertMoveNumber - 1;
       for (let t = 0; t < size * size; t++) {
