@@ -661,6 +661,7 @@ function readLocalstorage() {
     moveCounter = convertLocalstorageSetting.moveCounter;
     clickUndo = convertLocalstorageSetting.clickUndo;
     moveNumber = convertLocalstorageSetting.moveNumber;
+    time = convertLocalstorageSetting.time;
 
     setScore();
     let move = moveCounter - 1;
@@ -679,7 +680,22 @@ function readLocalstorage() {
     updateTempArray();
     resetButton();
     undoButton();
-    startTimer();
+    // startTimer();
     // getScoreGame.innerHTML = "Score: " + scoreGame;
+    interval = setInterval(() => {
+      time += 1;
+      display.innerHTML =
+        Math.floor(time / 3600)
+          .toString()
+          .padStart(2, "0") +
+        ":" +
+        Math.floor((time % 3600) / 60)
+          .toString()
+          .padStart(2, "0") +
+        ":" +
+        Math.floor(time % 60)
+          .toString()
+          .padStart(2, "0");
+    }, 1000);
   }
 }
