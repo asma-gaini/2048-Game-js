@@ -58,17 +58,6 @@ var display = document.getElementById("display");
 window.onload = createGame();
 
 function createGame() {
-  // if (move_data[0].moveArray == []) {
-  // setScore();
-  // initialArray();
-  // layout();
-  // resetButton();
-  // undoButton();
-  // startTimer();
-
-  // } else {
-  // readLocalstorage();
-  // }
   readLocalstorage();
 }
 
@@ -249,8 +238,6 @@ function moveRight() {
   }
   moveNumber++;
   setLocalStorageGame();
-  // console.log(moveNumber);
-  // readLocalstorage();
 }
 
 function moveLeft() {
@@ -310,8 +297,6 @@ function moveLeft() {
   }
   moveNumber++;
   setLocalStorageGame();
-  // console.log(moveNumber);
-  // readLocalstorage();
 }
 
 function moveUp() {
@@ -390,8 +375,6 @@ function moveUp() {
   }
   moveNumber++;
   setLocalStorageGame();
-  // console.log(moveNumber);
-  // readLocalstorage();
 }
 
 function moveDown() {
@@ -470,8 +453,6 @@ function moveDown() {
   }
   moveNumber++;
   setLocalStorageGame();
-  // console.log(moveNumber);
-  // readLocalstorage();
 }
 
 function resetButton() {
@@ -588,7 +569,6 @@ function undoGame() {
     clickUndo++;
   }
   setLocalStorageGame();
-  // console.log(moveNumber);
 }
 function setLocalStorageGame() {
   let gameSetting = {
@@ -602,8 +582,6 @@ function setLocalStorageGame() {
   let movesGame = JSON.stringify(move_data);
   let settingGame = JSON.stringify(gameSetting);
   let setLocalStorage = movesGame + "/" + settingGame;
-  // let setLocalStorage = movesGame;
-
   localStorage.setItem("game", setLocalStorage);
 }
 window.onbeforeunload = function (event) {
@@ -642,9 +620,7 @@ function readLocalstorage() {
     const convertLocalstorageMoveData = JSON.parse(moveData);
     const convertLocalstorageSetting = JSON.parse(setting);
 
-    // console.log(convertLocalstorageMoveData);
     for (let i = 0; i < convertLocalstorageMoveData.length; i++) {
-      console.log(convertLocalstorageMoveData[i]);
       move_data[i].score = convertLocalstorageMoveData[i].score;
       for (
         let j = 0;
@@ -655,8 +631,6 @@ function readLocalstorage() {
       }
     }
 
-    console.log(moveData);
-    console.log(convertLocalstorageSetting);
     scoreGame = convertLocalstorageSetting.scoreGame;
     moveCounter = convertLocalstorageSetting.moveCounter;
     clickUndo = convertLocalstorageSetting.clickUndo;
@@ -680,8 +654,6 @@ function readLocalstorage() {
     updateTempArray();
     resetButton();
     undoButton();
-    // startTimer();
-    // getScoreGame.innerHTML = "Score: " + scoreGame;
     interval = setInterval(() => {
       time += 1;
       display.innerHTML =
