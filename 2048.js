@@ -235,6 +235,7 @@ function moveRight() {
   moveUndo();
   if (clickUndo > 0) {
     clickUndo--;
+    document.querySelector(".undo").innerHTML = "Undo: " + clickUndo;
   }
   moveNumber++;
   setLocalStorageGame();
@@ -294,6 +295,7 @@ function moveLeft() {
   moveUndo();
   if (clickUndo > 0) {
     clickUndo--;
+    document.querySelector(".undo").innerHTML = "Undo: " + clickUndo;
   }
   moveNumber++;
   setLocalStorageGame();
@@ -372,6 +374,7 @@ function moveUp() {
   moveUndo();
   if (clickUndo > 0) {
     clickUndo--;
+    document.querySelector(".undo").innerHTML = "Undo: " + clickUndo;
   }
   moveNumber++;
   setLocalStorageGame();
@@ -450,6 +453,7 @@ function moveDown() {
   moveUndo();
   if (clickUndo > 0) {
     clickUndo--;
+    document.querySelector(".undo").innerHTML = "Undo: " + clickUndo;
   }
   moveNumber++;
   setLocalStorageGame();
@@ -471,7 +475,10 @@ function resetGame() {
   moveNumber = 0;
   moveCounter = 1;
   scoreGame = 0;
+  clickUndo = 0;
   getScoreGame.innerHTML = "Score: " + scoreGame;
+  document.querySelector(".undo").innerHTML = "Undo: " + clickUndo;
+
   arrayGame = [];
   for (let i = 0; i < numberOfPlayhouses; i++) {
     arrayGame.push(0);
@@ -528,8 +535,9 @@ function undoButton() {
 
   const createUndoBtn = document.createElement("button");
   createUndoBtn.setAttribute("class", "reset");
+  createUndoBtn.classList.add("undo");
   createUndoBtn.setAttribute("onclick", "undoGame()");
-  createUndoBtn.innerHTML = "Undo";
+  createUndoBtn.innerHTML = "Undo: " + clickUndo;
   selectUndo.appendChild(createUndoBtn);
 }
 function undoGame() {
@@ -567,6 +575,7 @@ function undoGame() {
 
     moveCounter++;
     clickUndo++;
+    document.querySelector(".undo").innerHTML = "Undo: " + clickUndo;
   }
   setLocalStorageGame();
 }
