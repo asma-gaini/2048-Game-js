@@ -37,7 +37,7 @@ let clickUndo = 0;
 
 let moveNumber = 0; //all moves
 
-const size = 5; //size of row and clumn
+const size = 4; //size of row and clumn
 const numberOfPlayhouses = size * size;
 var number = 0;
 var randomIndex = 0;
@@ -89,6 +89,13 @@ function layout() {
   for (let i = 0; i < size * size; i++) {
     const createGridSquare = document.createElement("div");
     createGridSquare.setAttribute("class", "grid-item");
+    if (size == 4) {
+      createGridSquare.classList.add("gridItem_square4");
+    } else if (size == 5) {
+      createGridSquare.classList.add("gridItem_square5");
+    } else if (size == 6) {
+      createGridSquare.classList.add("gridItem_square6");
+    }
     if (arrayGame[i] == 0) {
       createGridSquare.innerHTML = "  ";
     } else {
@@ -116,6 +123,7 @@ function updateArrayGame() {
       selectArray[j].innerHTML = "  ";
     }
   }
+  addColor();
 }
 
 function randomNumber() {
@@ -678,5 +686,48 @@ function readLocalstorage() {
           .toString()
           .padStart(2, "0");
     }, 1000);
+  }
+}
+function addColor() {
+  const allSquares = document.querySelectorAll(".grid-item");
+  for (let i = 0; i < allSquares.length; i++) {
+    const numberInSquare = allSquares[i].innerHTML;
+
+    switch (numberInSquare) {
+      case "2":
+        allSquares[i].style.backgroundColor = "rgb(228 193 78)";
+        break;
+      case "4":
+        allSquares[i].style.backgroundColor = "rgb(235 150 31)";
+        break;
+      case "8":
+        allSquares[i].style.backgroundColor = "rgb(235 104 31)";
+        break;
+      case "16":
+        allSquares[i].style.backgroundColor = "rgb(235 80 31)";
+        break;
+      case "32":
+        allSquares[i].style.backgroundColor = "rgb(212 58 10)";
+        break;
+      case "64":
+        allSquares[i].style.backgroundColor = "rgb(231 16 0)";
+        break;
+      case "128":
+        allSquares[i].style.backgroundColor = "rgb(227 245 38)";
+      default:
+        allSquares[i].style.backgroundColor = "#eee4da";
+    }
+
+    // if (allSquares[i].innerHTML == 2) {
+    //   allSquares[i].style.backgroundColor = "rgb(228 193 78)";
+    // }
+    // if (allSquares[i].innerHTML == 4) {
+    //   allSquares[i].style.backgroundColor = "rgb(235 150 31)";
+    // }
+    // if (allSquares[i].innerHTML == 8) {
+    //   allSquares[i].style.backgroundColor = "rgb(235 104 31)";
+    // } else {
+    //   allSquares[i].style.backgroundColor = "#eee4da";
+    // }
   }
 }
