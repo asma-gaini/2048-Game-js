@@ -37,7 +37,7 @@ let clickUndo = 0;
 
 let moveNumber = 0; //all moves
 
-const size = 4; //size of row and clumn
+const size = 6; //size of row and clumn
 const numberOfPlayhouses = size * size;
 var number = 0;
 var randomIndex = 0;
@@ -202,9 +202,9 @@ function moveUndo() {
 function moveRight() {
   for (let i = numberOfPlayhouses - 1; i >= 0; i--) {
     //enteghal 0 ha
-    if (i != numberOfPlayhouses - 1 && i % size != 4) {
+    if (i != numberOfPlayhouses - 1 && i % size != size - 1) {
       if (arrayGame[i] != 0 && arrayGame[i + 1] == 0) {
-        while (arrayGame[i + 1] == 0 && i % size != 4) {
+        while (arrayGame[i + 1] == 0 && i % size != size - 1) {
           arrayGame[i + 1] = arrayGame[i];
           arrayGame[i] = 0;
           i++;
@@ -713,7 +713,8 @@ function addColor() {
         allSquares[i].style.backgroundColor = "rgb(231 16 0)";
         break;
       case "128":
-        allSquares[i].style.backgroundColor = "rgb(227 245 38)";
+        allSquares[i].style.backgroundColor = "rgb(227 245 38 / 80%)";
+        break;
       default:
         allSquares[i].style.backgroundColor = "#eee4da";
     }

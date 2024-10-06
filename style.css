@@ -22,7 +22,9 @@ body {
   padding: 3px;
   width: 447px;
   height: 447px;
-  background-color: #bbada0;
+  /* background-color: #bbada0; */
+  background-color: black;
+
   border-radius: 6px;
 }
 .grid-item {
@@ -37,10 +39,10 @@ body {
   /* width: 75px;
   height: 75px;
   margin: 7px; */
-  font-size: 48px;
   border-radius: 5px;
   background-color: #eee4da;
-  color: #afa192;
+  /* color: #afa192; */
+  color: black;
   font-weight: bold;
   text-align: center;
 
@@ -51,6 +53,7 @@ body {
   width: 100px;
   height: 100px;
   margin: 5px;
+  font-size: 48px;
 }
 .gridItem_square5 {
   /* width: 75px;
@@ -59,11 +62,13 @@ body {
   width: 80px;
   height: 75px;
   margin: 4px;
+  font-size: 48px;
 }
 .gridItem_square6 {
   width: 65px;
   height: 65px;
   margin: 4px;
+  font-size: 38px;
 }
 .header {
   display: flex;
