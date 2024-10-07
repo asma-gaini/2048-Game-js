@@ -37,7 +37,7 @@ let clickUndo = 0;
 
 let moveNumber = 0; //all moves
 
-const size = 6; //size of row and clumn
+const size = 5; //size of row and clumn
 const numberOfPlayhouses = size * size;
 var number = 0;
 var randomIndex = 0;
