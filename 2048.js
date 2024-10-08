@@ -37,7 +37,7 @@ let clickUndo = 0;
 
 let moveNumber = 0; //all moves
 
-const size = 5; //size of row and clumn
+const size = 4; //size of row and clumn
 const numberOfPlayhouses = size * size;
 var number = 0;
 var randomIndex = 0;
@@ -59,6 +59,7 @@ window.onload = createGame();
 
 function createGame() {
   readLocalstorage();
+  addColor();
 }
 
 function setScore() {
@@ -85,6 +86,11 @@ function layout() {
   const createGrid = document.createElement("div");
   createGrid.setAttribute("class", "grid-container");
   getLayout.appendChild(createGrid);
+
+  const container = document.querySelector(".grid-container");
+
+  container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
   for (let i = 0; i < size * size; i++) {
     const createGridSquare = document.createElement("div");
