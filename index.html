@@ -8,17 +8,27 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
+  <body class="rubik-2048">
     <div class="header">
       <div id="score"></div>
-      <div id="undo"></div>
+      <!-- <div id="undo"></div> -->
       <div class="stopwatch">
         <div id="display">00:00:00</div>
       </div>
     </div>
     <div id="layout"></div>
-    <div id="resetGame"></div>
+    <div class="footer">
+      <div id="resetGame"></div>
+      <div id="undo"></div>
+    </div>
+
     <script src="./2048.js" async defer></script>
   </body>
 </html>

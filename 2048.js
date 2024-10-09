@@ -701,28 +701,56 @@ function addColor() {
 
     switch (numberInSquare) {
       case "2":
-        allSquares[i].style.backgroundColor = "rgb(228 193 78)";
+        // allSquares[i].style.backgroundColor = "rgb(228 193 78)";
+        allSquares[i].style.backgroundColor = "#eee4da";
+        allSquares[i].style.color = "#756452";
+
         break;
       case "4":
-        allSquares[i].style.backgroundColor = "rgb(235 150 31)";
+        // allSquares[i].style.backgroundColor = "rgb(235 150 31)";
+        allSquares[i].style.backgroundColor = "#ebd8b6";
+        allSquares[i].style.color = "#756452";
+
         break;
       case "8":
-        allSquares[i].style.backgroundColor = "rgb(235 104 31)";
+        // allSquares[i].style.backgroundColor = "rgb(235 104 31)";
+        allSquares[i].style.backgroundColor = "#f1ae73";
+        allSquares[i].style.color = "#ffffff";
+
         break;
       case "16":
-        allSquares[i].style.backgroundColor = "rgb(235 80 31)";
+        // allSquares[i].style.backgroundColor = "rgb(235 80 31)";
+        allSquares[i].style.backgroundColor = "#f6925e";
+        allSquares[i].style.color = "#ffffff";
+
         break;
       case "32":
-        allSquares[i].style.backgroundColor = "rgb(212 58 10)";
+        // allSquares[i].style.backgroundColor = "rgb(212 58 10)";
+        allSquares[i].style.backgroundColor = "#f57658";
+        allSquares[i].style.color = "#ffffff";
+
         break;
       case "64":
-        allSquares[i].style.backgroundColor = "rgb(231 16 0)";
+        // allSquares[i].style.backgroundColor = "rgb(231 16 0)";
+        allSquares[i].style.backgroundColor = "#f55833";
+        allSquares[i].style.color = "#ffffff";
+
         break;
       case "128":
-        allSquares[i].style.backgroundColor = "rgb(227 245 38 / 80%)";
+        // allSquares[i].style.backgroundColor = "rgb(227 245 38 / 80%)";
+        allSquares[i].style.backgroundColor = "#f2ce52";
+        allSquares[i].style.color = "#ffffff";
+
+        break;
+      case "256":
+        // allSquares[i].style.backgroundColor = "rgb(227 245 38 / 80%)";
+        allSquares[i].style.backgroundColor = "#f4cc44";
+        allSquares[i].style.color = "#ffffff";
+
         break;
       default:
-        allSquares[i].style.backgroundColor = "#eee4da";
+        allSquares[i].style.backgroundColor = "#bdac97";
+        allSquares[i].style.color = "#ffffff";
     }
 
     // if (allSquares[i].innerHTML == 2) {

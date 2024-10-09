@@ -1,3 +1,10 @@
+.rubik-2048 {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   background-color: #faf8ef;
   /* display: flex;
@@ -26,9 +33,11 @@ body {
   width: 447px;
   height: 447px;
   /* background-color: #bbada0; */
-  background-color: black;
+  background-color: #9d8975;
 
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 @media screen and (max-width: 480px) {
@@ -51,10 +60,10 @@ body {
   margin: 7px; */
   width: 100%;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #eee4da;
   /* color: #afa192; */
-  color: black;
+  /* color: #756452; */
   font-weight: bold;
   text-align: center;
   font-size: 35px;
@@ -91,24 +100,46 @@ body {
   align-items: center;
   gap: 80px;
 }
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 250px;
+  margin: auto;
+  background-color: #eae7d9;
+  margin-top: 30px;
+  border-radius: 8px;
+}
 .resetDiv {
-  margin-top: 20px;
+  margin: 10px;
   display: flex;
   justify-content: center;
 }
 
 .reset {
-  border: 2px solid black;
   border-radius: 5px;
-  background-color: rgba(4, 4, 4, 0.405);
-  color: black;
+  background-color: inherit;
+  color: #988876;
   font-size: 24px;
   font-weight: bold;
+  border: none;
+}
+.reset:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 2px solid #988876;
+}
+.undo {
+  margin: 10px;
 }
 
 .score {
-  font-weight: bold;
-  font-size: 40px;
+  width: 150px;
+  background-color: #eae7d9;
+  font-weight: 600;
+  font-size: 30px;
+  text-align: center;
+  color: #988876;
+  border-radius: 8px;
 }
 
 .stopwatch {
@@ -118,6 +149,9 @@ body {
 .stopwatch #display {
   font-size: 30px;
   font-weight: bold;
-  color: #111111;
-  padding: 10px;
+  color: #988876;
+  padding: 17px;
+  width: auto;
+  background-color: #eae7d9;
+  border-radius: 8px;
 }
