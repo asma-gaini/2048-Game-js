@@ -753,16 +753,5 @@ function addColor() {
         allSquares[i].style.color = "#ffffff";
     }
 
-    // if (allSquares[i].innerHTML == 2) {
-    //   allSquares[i].style.backgroundColor = "rgb(228 193 78)";
-    // }
-    // if (allSquares[i].innerHTML == 4) {
-    //   allSquares[i].style.backgroundColor = "rgb(235 150 31)";
-    // }
-    // if (allSquares[i].innerHTML == 8) {
-    //   allSquares[i].style.backgroundColor = "rgb(235 104 31)";
-    // } else {
-    //   allSquares[i].style.backgroundColor = "#eee4da";
-    // }
   }
 }

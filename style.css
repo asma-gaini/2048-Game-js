@@ -27,10 +27,10 @@ body {
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 720px) {
   .grid-container {
-    width: 100vw;
-    height: 100vw;
+    width: 300px;
+    height: 300px;
   }
 }
 .grid-item {
@@ -54,6 +54,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 80px;
+  /* height: 80px; */
 }
 .footer {
   display: flex;
@@ -95,6 +96,7 @@ body {
   text-align: center;
   color: #988876;
   border-radius: 8px;
+  padding: 17px;
 }
 
 .stopwatch {
