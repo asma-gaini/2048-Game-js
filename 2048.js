@@ -37,19 +37,23 @@ let clickUndo = 0;
 
 let moveNumber = 0; //all moves
 
-const size = 4; //size of row and clumn
+const size = 5; //size of row and clumn
 const numberOfPlayhouses = size * size;
 var number = 0;
 var randomIndex = 0;
 let arrayGame = [
   // 2, 0, 0, 0, 4, 0, 2, 0, 4, 0, 0, 0, 4, 4, 2, 0, 2, 4, 0, 0, 2, 0, 2, 2, 2,
   // 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+  2, 2, 3, 5, 3, 6, 2, 7, 4, 8, 9, 3, 15, 10, 18, 8, 2, 7, 9, 5, 2, 3, 2, 6, 11,
 ];
 let tempArray = [];
-for (let i = 0; i < numberOfPlayhouses; i++) {
-  arrayGame.push(0);
-  tempArray.push(i);
-}
+// for (let i = 0; i < numberOfPlayhouses; i++) {
+//   arrayGame.push(0);
+//   tempArray.push(i);
+// }
+updateTempArray();
+
+let countGameOver = 0;
 
 var time = 0;
 var interval;
@@ -253,6 +257,7 @@ function moveRight() {
   }
   moveNumber++;
   setLocalStorageGame();
+  gameOver();
 }
 
 function moveLeft() {
@@ -313,6 +318,7 @@ function moveLeft() {
   }
   moveNumber++;
   setLocalStorageGame();
+  gameOver();
 }
 
 function moveUp() {
@@ -392,6 +398,7 @@ function moveUp() {
   }
   moveNumber++;
   setLocalStorageGame();
+  gameOver();
 }
 
 function moveDown() {
@@ -471,6 +478,7 @@ function moveDown() {
   }
   moveNumber++;
   setLocalStorageGame();
+  gameOver();
 }
 
 function resetButton() {
@@ -635,6 +643,7 @@ function readLocalstorage() {
     undoButton();
     startTimer();
   } else {
+    // gameOver();
     const getLocalstorage = window.localStorage.getItem("game");
     const splitLocalstorage = getLocalstorage.split("/");
     const moveData = splitLocalstorage[0];
@@ -752,6 +761,57 @@ function addColor() {
         allSquares[i].style.backgroundColor = "#bdac97";
         allSquares[i].style.color = "#ffffff";
     }
+  }
+}
 
+function gameOver() {
+  if (tempArray.length == 0) {
+    //right
+    for (let i = numberOfPlayhouses - 1; i >= 0; i--) {
+      if (i % size != 0) {
+        //faghat ag 2 ta adad moshabeh kenar ham bashan
+        if (arrayGame[i - 1] == arrayGame[i] && arrayGame[i] != 0) {
+          countGameOver++;
+          break;
+        }
+      }
+    }
+
+    //left
+    for (let j = 0; j < numberOfPlayhouses; j++) {
+      if (j % size != size - 1) {
+        //faghat ag 2 ta adad moshabeh kenar ham bashan
+        if (arrayGame[j] == arrayGame[j + 1]) {
+          countGameOver++;
+          break;
+        }
+      }
+    }
+
+    //up
+    for (let k = 0; k < size; k++) {
+      while (k < numberOfPlayhouses - size) {
+        if (arrayGame[k] == arrayGame[k + size] && arrayGame[k] != 0) {
+          countGameOver++;
+          break;
+        }
+        k += size;
+      }
+    }
+
+    //down
+    for (let m = numberOfPlayhouses - 1; m >= numberOfPlayhouses - size; m--) {
+      while (m >= size) {
+        if (arrayGame[m] == arrayGame[m - size] && arrayGame[m] != 0) {
+          countGameOver++;
+          break;
+        }
+        m -= size;
+      }
+    }
+
+    if (countGameOver == 0) {
+      alert("sorry! you are game over😢");
+    }
   }
 }
